@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Acciones responsivas</title>
+    <meta name="description" content="Acciones responsivas para el entorno virtual" />
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+
+    <script src="info-message.js"></script>
+    <script src="highlight.js"></script>
+    <script src="info-panel.js"></script>
+  </head>
+  <body>
+    <a-scene
+      background="color: #000"
+      cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
+      <a-assets>
+        <!-- IMAGE -->
+        <img
+          id="asm"
+          src="asmBanner.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="asm2"
+          src="asm2Banner.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="sm2"
+          src="sm2Banner.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="tronUp"
+          src="tronUpBanner.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="naruto"
+          src="narutoBanner.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="tronLeg"
+          src="tronBanner.jpg"
+          crossorigin="anonymous"
+        />
+        <!-- POSTER -->
+        <img
+          id="asmPoster"
+          src="asmPoster.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="asm2Poster"
+          src="asm2Poster.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="sm2Poster"
+          src="sm2Poster.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="tronUpPoster"
+          src="tronUpPoster.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="narutoPoster"
+          src="narutoPoster.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="tronLegPoster"
+          src="tronPoster.jpg"
+          crossorigin="anonymous"
+        />
+
+        <a-mixin
+          id="frame"
+          geometry="primitive: plane; width: 0.85; height: 1.2"
+          material="color: white; shader: flat"
+          animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+        ></a-mixin>
+        <a-mixin
+          id="poster"
+          geometry="primitive: plane; width: 0.8; height: 1.15"
+          material="color: white; shader: flat"
+          position="0 0 0.005"
+        ></a-mixin>
+        <a-mixin
+          id="movieImage"
+          geometry="primitive: plane; width: 1.5; height: 0.81"
+          material="src: #ponyo; shader: flat; transparent: true"
+          position="0 0.495 0.002"
+        ></a-mixin>
+      </a-assets>
+
+      <a-entity
+        id="background"
+        position="0 0 0"
+        geometry="primitive: sphere; radius: 2.0"
+        material="color: red; side: back; shader: flat"
+        scale="0.001 0.001 0.001"
+        visible="false"
+        class="raycastable"
+      >
+      </a-entity>
+
+      <a-entity
+        position="0 1.6 0"
+        camera
+        look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: false"
+      >
+        <a-entity
+          id="fadeBackground"
+          geometry="primitive: sphere; radius: 2.5"
+          material="color: #999999; side: back; shader: flat; blending: subtractive;"
+          visible="false"
+        >
+        </a-entity>
+      </a-entity>
+
+      <a-entity
+        id="leftHand"
+        laser-controls="hand: left"
+        raycaster="objects: .raycastable"
+      ></a-entity>
+      <a-entity
+        id="rightHand"
+        laser-controls="hand: right"
+        raycaster="objects: .raycastable"
+        line="color: #118A7E"
+      ></a-entity>
+
+      <a-entity id="ui" position="0 1.6 -2.5">
+        <!-- HEREEEEEEEE -->
+        <a-entity id="menu" highlight>
+          <a-entity
+            id="asmButton"
+            position="-3.0 0 0"
+            mixin="frame"
+            class="raycastable menu-button"
+          >
+            <a-entity material="src: #asmPoster;" mixin="poster"></a-entity>
+          </a-entity>
+
+          <a-entity
+            id="asm2Button"
+            position="-1.8 0 0"
+            mixin="frame"
+            class="raycastable menu-button"
+          >
+            <a-entity material="src: #asm2Poster" mixin="poster"></a-entity>
+          </a-entity>
+
+          <a-entity
+            id="sm2Button"
+            position="-0.6 0 0"
+            mixin="frame"
+            class="raycastable menu-button"
+          >
+            <a-entity material="src: #sm2Poster" mixin="poster"></a-entity>
+          </a-entity>
+
+          <a-entity
+            id="tronUpButton"
+            position="0.6 0 0"
+            mixin="frame"
+            class="raycastable menu-button"
+          >
+            <a-entity material="src: #tronUpPoster" mixin="poster"></a-entity>
+          </a-entity>
+
+          <a-entity
+            id="narutoButton"
+            position="1.8 0 0"
+            mixin="frame"
+            class="raycastable menu-button"
+          >
+            <a-entity material="src: #narutoPoster" mixin="poster"></a-entity>
+          </a-entity>
+
+          <a-entity
+            id="tronLegButton"
+            position="3.0 0 0"
+            mixin="frame"
+            class="raycastable menu-button"
+          >
+            <a-entity material="src: #tronLegPoster" mixin="poster"></a-entity>
+          </a-entity>
+        </a-entity>
+        <!-- HEREEEEEEE -->
+        <a-entity
+          id="infoPanel"
+          position="0 0 0.5"
+          info-panel
+          visible="false"
+          scale="0.001 0.001 0.001"
+          geometry="primitive: plane; width: 1.5; height: 1.8"
+          material="color: #0D0D0D; shader: flat; transparent: false"
+          class="raycastable"
+        >
+          <a-entity
+            id="asmMovieImage"
+            mixin="movieImage"
+            material="src: #asm"
+            visible="false"
+          ></a-entity>
+          <a-entity
+            id="asm2MovieImage"
+            mixin="movieImage"
+            material="src: #asm2"
+            visible="false"
+          ></a-entity>
+          <a-entity
+            id="sm2MovieImage"
+            mixin="movieImage"
+            material="src: #sm2"
+            visible="false"
+          ></a-entity>
+          <a-entity
+            id="tronUpMovieImage"
+            mixin="movieImage"
+            material="src: #tronUp"
+            visible="false"
+          ></a-entity>
+          <a-entity
+            id="narutoMovieImage"
+            mixin="movieImage"
+            material="src: #naruto"
+            visible="false"
+          ></a-entity>
+          <a-entity
+            id="tronLegMovieImage"
+            mixin="movieImage"
+            material="src: #tronLeg"
+            visible="false"
+          ></a-entity>
+          <a-entity
+            id="movieTitle"
+            position="-0.68 -0.1 0"
+            text="shader: msdf; anchor: left; width: 1.5; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white; value: Ponyo (2003)"
+          ></a-entity>
+          <a-entity
+            id="movieDescription"
+            position="-0.68 -0.2 0"
+            text="baseline: top; shader: msdf; anchor: left; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white; value: Lorem ipsum dolor sit amet..."
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
