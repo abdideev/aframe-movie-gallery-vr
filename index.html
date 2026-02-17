@@ -15,8 +15,13 @@
   </head>
   <body>
     <a-scene
-      background="color: #000"
+      background="color: #D9D9D9"
       cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
+
+      <a-circle rotation="-90 0 0" position="0 0 -3" radius="3" color="#050508"
+      animation="property:position; from: 0 0 -3; to: 0 0.3 -3; dur: 3000; loop: true; dir: alternate"
+      ></a-circle>
+
       <a-assets>
         <!-- IMAGE -->
         <img
@@ -114,9 +119,10 @@
       </a-entity>
 
       <a-entity
-        position="0 1.6 0"
+        position="0 1.6 0" 
         camera
-        look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: false"
+        look-controls
+        wasd-controls
       >
         <a-entity
           id="fadeBackground"

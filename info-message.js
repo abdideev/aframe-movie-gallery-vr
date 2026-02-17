@@ -5,7 +5,7 @@ AFRAME.registerComponent('info-message', {
     startOpened: {default: false},
     width: {default: 400},
     height: {default: 320}
-  },
+  }, 
   init: function () {
     var sceneEl = this.el.sceneEl;
     var messageEl = this.messageEl = document.createElement('div');
@@ -35,7 +35,6 @@ AFRAME.registerComponent('info-message', {
     messageEl.innerHTML = this.data.htmlSrc.data;
     messageEl.appendChild(this.closeButtonEl);
   },
-
   addStyles: function () {
     var css =
       '.a-info-message{border-radius: 10px; position: absolute; width: ' + this.data.width + 'px;' +
